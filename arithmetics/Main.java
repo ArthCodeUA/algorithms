@@ -5,9 +5,11 @@ import java.util.Collections;
 
 public class Main {
     public static void main(String[] args) {
-        ArrayList<Integer> a = stringToArray("345");
-        ArrayList<Integer> b = stringToArray("543");
-        printNumber(addition(a, b));
+        ArrayList<Integer> a = stringToArray("333345334545454533454533334533454545453345454545");
+        ArrayList<Integer> b = stringToArray("543333453345454543333453345454545334545333345334545454533454545453545334545333345334545454533454545453");
+        printNumber(multiplication(a, b));
+        System.out.println(primeList(100));
+        System.out.println(primeList(1000000));
     }
 
     private static ArrayList<Integer> addition(ArrayList<Integer> a, ArrayList<Integer> b) {
@@ -109,5 +111,26 @@ public class Main {
             mul = addition(mul, subMul);
         }
         return mul;
+    }
+
+    private static ArrayList<Integer> primeList(int n) {
+        ArrayList<Integer> primes = new ArrayList<>();
+        for (int i = 2; i < n; i++) {
+            if(eratosthenesSieve(i)) {
+                primes.add(i);
+            }
+        }
+        return primes;
+    }
+
+    private static boolean eratosthenesSieve(int n) {
+        boolean isPrime = true;
+        for (int i = 2; i < Math.ceil(Math.sqrt(n)); i++) {
+            if(n % i == 0) {
+                isPrime = false;
+                break;
+            }
+        }
+        return isPrime;
     }
 }
